@@ -22,7 +22,6 @@ Si on efface cette ligne la et qu'on met un nombre de thread fixe, le programme 
 #include <SDL/SDL.h>
 #include <pthread.h>
 #include <windows.h>
-#include <gmp.h>
 
 #define FPS 30 //le FPS du logiciel
 #define PRECISION_MAX 100 //la précision de calcul
@@ -170,28 +169,7 @@ void dessiner_fractale(struct params_dessiner_fractale *params_dessiner_fractale
 	
 	//seules 2 variables sont des pointeurs communs à chaque thread : continuer et ecran. Ce sont les seules variables qui néssécitent une protection par mutex
 	pthread_mutex_lock(&mutex);//on verrouille l'acces a la variable continuer
-	
-	mpz_t debut_x_mpz, debut_y_mpz,fin_x_mpz, fin_y_mpz, hauteur_ecran_mpz,largeur_ecran_mpz,x_mpz,y_mpz;
-	
-	mpz_init(debut_x_mpz);
-	mpz_init(debut_y_mpz);
-	mpz_init(fin_x_mpz);
-	mpz_init(fin_y_mpz);
-	mpz_init(hauteur_ecran_mpz);
-	mpz_init(largeur_ecran_mpz);
-	mpz_init(x_mpz);
-	mpz_init(y_mpz);
-	
-	mpz_init_set_ui(hauteur_ecran_mpz,hauteur_ecran);
-	mpz_init_set_ui(largeur_ecran_mpz,largeur_ecran); 
-	mpz_init_set_ui(x_mpz,0);
-	mpz_init_set_ui(y_mpz,0);
-	
-	
-	
-	
-	
-	
+
 	for(x=0;x<largeur_ecran && *continuer;x++)
 	{
 		for(y=debut_ecran_y;y<fin_ecran_y;y++)
