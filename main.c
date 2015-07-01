@@ -10,6 +10,7 @@
 *
 **/
 /*
+v1.0
 compilé et linké avec GCC 
 Arguments de compilation : -O2 -Wall -D_GNU_SOURCE=1 -Dmain=SDL_main -DNO_STDIO_REDIRECT -D_REENTRANT
 Arguments du linker : -lmingw32 -lSDLmain -lSDL -lpthreadGC2 [-mwindows eventuellement sous windows si on ne désire pas pas avoir la console]
@@ -122,8 +123,8 @@ int main(int argc, char *argv[])
 				params_dessiner_fractale[i].hauteur_ecran=hauteur_ecran;//la largeur/hauteur de l'écran
 				params_dessiner_fractale[i].largeur_ecran=largeur_ecran;
 					
-				params_dessiner_fractale[i].debut_ecran_y=(int)((long double)i*((long double)hauteur_ecran/(long double)nombre_de_threads))+1;//la partie de l'écran (en pixel) que chaque thread   
-				params_dessiner_fractale[i].fin_ecran_y=(int)(((long double)i+1.0)*((long double)hauteur_ecran/(long double)nombre_de_threads))-1;//dois dessiner. Chaque thread dessine un rectangle 
+				params_dessiner_fractale[i].debut_ecran_y=(int)((long double)i*((long double)hauteur_ecran/(long double)nombre_de_threads));//la partie de l'écran (en pixel) que chaque thread   
+				params_dessiner_fractale[i].fin_ecran_y=(int)(((long double)i+1.0)*((long double)hauteur_ecran/(long double)nombre_de_threads));//dois dessiner. Chaque thread dessine un rectangle 
 				//par exemple, sur 2 coeurs, le 1er thread dessinera un rectangle de 0 a hauteur_ecran/2, et le 2eme de hauteur_ecran/2 a hauteur_ecran.
 				
 				if(pthread_create(&thread[i],NULL,(void*) dessiner_fractale,&params_dessiner_fractale[i])==EAGAIN) printf("erreur: impossible de creer les threads !! :(\n");
